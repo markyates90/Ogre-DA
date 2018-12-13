@@ -3,3 +3,18 @@
 ################################################################################
 
 *.sqlite
+/.vs/VSWorkspaceState.json
+/.vs/Ogre-DA/v15/.suo
+/OgreDA/.vs
+/OgreDA/ClassLibrary1
+/OgreDA/DataAccessTests/bin/Debug
+/OgreDA/DataAccessTests/obj/Debug
+/OgreDA/DataAccessTests.Core/bin/Debug/netcoreapp2.1
+/OgreDA/DataAccessTests.Core/obj
+/OgreDA/DataAccessTestsOracle/bin/Debug
+/OgreDA/DataAccessTestsOracle/obj/Debug
+/OgreDA/OgreDA.DataAccess/bin/Debug
+/OgreDA/OgreDA.DataAccess/obj/Debug
+/OgreDA/packages
+/OgreDA.DataAccess/bin/Debug/netstandard2.0
+/OgreDA.DataAccess/obj
