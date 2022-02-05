@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OgreDA.DataAccess", "DataAccess\OgreDA.DataAccess.csproj", "{2BB38BBE-6A18-459E-969D-E517F09EF1E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OgreDA.DataAccess.Tests", "DataAccessTests\OgreDA.DataAccess.Tests.csproj", "{458023B4-DE40-42AB-B6A5-32C607062C0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OgreDA.DataAccess.Oracle.Tests", "DataAccessTestsOracle\OgreDA.DataAccess.Oracle.Tests.csproj", "{B103FDC2-DA4D-4263-A989-4DB3BF3A14C1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2BB38BBE-6A18-459E-969D-E517F09EF1E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BB38BBE-6A18-459E-969D-E517F09EF1E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BB38BBE-6A18-459E-969D-E517F09EF1E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BB38BBE-6A18-459E-969D-E517F09EF1E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{458023B4-DE40-42AB-B6A5-32C607062C0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{458023B4-DE40-42AB-B6A5-32C607062C0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{458023B4-DE40-42AB-B6A5-32C607062C0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{458023B4-DE40-42AB-B6A5-32C607062C0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B103FDC2-DA4D-4263-A989-4DB3BF3A14C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B103FDC2-DA4D-4263-A989-4DB3BF3A14C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B103FDC2-DA4D-4263-A989-4DB3BF3A14C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B103FDC2-DA4D-4263-A989-4DB3BF3A14C1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
