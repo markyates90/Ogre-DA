@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Data.Common;
 using OgreDA.DataAccess;
 
 namespace OgreDA.Orm.Query;
@@ -19,42 +21,64 @@ public interface IOrderBy :IQueryResult
 
 public interface IQueryResult
 {
-    public List<T> ToList<T>();
+    public Task<List<T>> ToListAsync<T>() where T : class, new();
+    public Task<PagedList<T>> ToPagedListAsync<T>(int take, int skip) where T : class, new();
+    public IQueryResult AddParameter(string name, object value);
 }
 
 public class FluentSelect : IFrom, IWhere, IOrderBy, IQueryResult
 {
-    private SqlSelectClause command;
+    private SqlSelectClause sqlSelect;
     private Database database;
+    private DbCommand command;
 
     public FluentSelect(Database db, string columnsClause)
     {
         database = db;
-        command = new SqlSelectClause();
-        command.ColumnClause = columnsClause;
+        command = db.CreateCommand();
+        sqlSelect = new SqlSelectClause();
+        sqlSelect.ColumnClause = columnsClause;
     }
 
     public IWhere From(string fromClause)
     {
-        command.FromClause = fromClause;
+        sqlSelect.FromClause = fromClause;
         return this;
     }
 
     public IOrderBy Where(string whereClause)
     {
-        command.WhereClause = whereClause;
+        sqlSelect.WhereClause = whereClause;
         return this;
     }
 
     public IQueryResult OrderBy(string orderByClause)
     {
-        command.OrderByClause = orderByClause;
+        sqlSelect.OrderByClause = orderByClause;
         return this;
     }
 
-    public List<T> ToList<T>()
+    public IQueryResult AddParameter(string name, object value)
     {
-        return new List<T>();
+        command.AddParameter(name, value);
+        return this;
+    }
+
+    public async Task<List<T>> ToListAsync<T>() where T : class, new()
+    {
+        command.CommandText = sqlSelect.ToCommandText();
+        return await database.QueryAsync<T>(command);
+    }
+    public async Task<PagedList<T>> ToPagedListAsync<T>(int take, int skip) where T : class, new()
+    {
+        PagedList<T> result = new PagedList<T>() {Take=take, Skip=skip};
+        command.CommandText = sqlSelect.ToCommandText() + $" OFFSET ({skip}) ROWS FETCH NEXT {take} ROWS ONLY";
+        Task<List<T>> listTask = database.QueryAsync<T>(command);
+        command.CommandText = sqlSelect.ToCountCommand();
+        result.TotalCount = await database.ExecuteScalarAsync<int>(command);
+        result.Items = await listTask;
+
+        return result;
     }
 }
 
