@@ -32,3 +32,32 @@ INSERT [dbo].[UnitTest] ([TestID], [StringCol], [IntCol], [DoubleCol], [DateCol]
 GO
 SET IDENTITY_INSERT [dbo].[UnitTest] OFF
 GO
+
+CREATE TABLE [dbo].[QueryTest] (
+	QueryTestID int IDENTITY(1,1) NOT NULL,
+	NameCol nvarchar(50) NOT NULL,
+	ValueCol int NOT NULL,
+CONSTRAINT QueryTest_PK PRIMARY KEY (QueryTestID)
+);
+GO
+
+INSERT INTO QueryTest (NameCol, ValueCol) VALUES ('One', 1);
+INSERT INTO QueryTest (NameCol, ValueCol) VALUES ('Two', 2);
+INSERT INTO QueryTest (NameCol, ValueCol) VALUES ('Three', 3);
+INSERT INTO QueryTest (NameCol, ValueCol) VALUES ('Four', 4);
+INSERT INTO QueryTest (NameCol, ValueCol) VALUES ('Five', 5);
+INSERT INTO QueryTest (NameCol, ValueCol) VALUES ('Six', 6);
+INSERT INTO QueryTest (NameCol, ValueCol) VALUES ('Seven', 7);
+INSERT INTO QueryTest (NameCol, ValueCol) VALUES ('Eight', 8);
+INSERT INTO QueryTest (NameCol, ValueCol) VALUES ('Nine', 9);
+INSERT INTO QueryTest (NameCol, ValueCol) VALUES ('Ten', 10);
+INSERT INTO QueryTest (NameCol, ValueCol) VALUES ('Eleven', 11);
+INSERT INTO QueryTest (NameCol, ValueCol) VALUES ('Twelve', 12);
+INSERT INTO QueryTest (NameCol, ValueCol) VALUES ('Thirteen', 13);
+INSERT INTO QueryTest (NameCol, ValueCol) VALUES ('Forteen', 14);
+INSERT INTO QueryTest (NameCol, ValueCol) VALUES ('Fifteen', 15);
+INSERT INTO QueryTest (NameCol, ValueCol) VALUES ('Sixteen', 16);
+INSERT INTO QueryTest (NameCol, ValueCol) VALUES ('Seventeen', 17);
+INSERT INTO QueryTest (NameCol, ValueCol) VALUES ('Eighteen', 18);
+INSERT INTO QueryTest (NameCol, ValueCol) VALUES ('Nineteen', 19);
+INSERT INTO QueryTest (NameCol, ValueCol) VALUES ('Twenty', 20);

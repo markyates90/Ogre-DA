@@ -12,6 +12,7 @@ public interface IFrom
 public interface IWhere : IQueryResult
 {
     public IOrderBy Where(string whereClause);
+    public IQueryResult OrderBy(string orderByClause);
 }
 
 public interface IOrderBy :IQueryResult
@@ -71,12 +72,19 @@ public class FluentSelect : IFrom, IWhere, IOrderBy, IQueryResult
     }
     public async Task<PagedList<T>> ToPagedListAsync<T>(int take, int skip) where T : class, new()
     {
+        if (string.IsNullOrEmpty(sqlSelect.OrderByClause))
+        {
+            sqlSelect.OrderByClause = "1";
+        }
         PagedList<T> result = new PagedList<T>() {Take=take, Skip=skip};
-        command.CommandText = sqlSelect.ToCommandText() + $" OFFSET ({skip}) ROWS FETCH NEXT {take} ROWS ONLY";
-        Task<List<T>> listTask = database.QueryAsync<T>(command);
-        command.CommandText = sqlSelect.ToCountCommand();
-        result.TotalCount = await database.ExecuteScalarAsync<int>(command);
-        result.Items = await listTask;
+        using (DbConnection connection = database.OpenConnection(false))
+        {
+            command.Connection = connection;
+            command.CommandText = sqlSelect.ToCommandText() + $" OFFSET ({skip}) ROWS FETCH NEXT {take} ROWS ONLY";
+            result.Items = await database.QueryAsync<T>(command);
+            command.CommandText = sqlSelect.ToCountCommand();
+            result.TotalCount = await database.ExecuteScalarAsync<int>(command);
+        }
 
         return result;
     }

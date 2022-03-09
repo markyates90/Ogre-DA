@@ -12,3 +12,10 @@ public class UnitTestModel
 
     public UnitTestModel() {}
 }
+
+public class QueryTestModel
+{
+    public int QueryTestID { get; set; }
+    public string NameCol { get; set; }
+    public int ValueCol { get; set; }
+}
